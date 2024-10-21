@@ -44,7 +44,8 @@ async fn main() {
         let mut pi: PROCESS_INFORMATION = PROCESS_INFORMATION::default();
         println!("[+] Creating process");
 
-        let cmd_pstr: PSTR = PSTR::from_raw(String::from("C:\\SysinternalsSuite\\procdump64.exe -accepteula -w -e -dc testing notepad\0").as_mut_ptr());
+        let mut u8_str: Vec<u8> = b"C:\\SysInternalsSuite\\procdump64.exe -accepteula -w -e -dc testing notepad\0".to_vec();
+        let cmd_pstr: PSTR = PSTR::from_raw(u8_str.as_mut_ptr());
 
         CreateProcessA(
             PCSTR::null(),
